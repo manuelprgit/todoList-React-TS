@@ -7,7 +7,7 @@ type TodoTitleProps = {
 
 function TodoTitle({ totalTodos, completed }: TodoTitleProps) {
   return (
-    <h1>Has completado {completed} tareas de {totalTodos}</h1>
+    <h1>Has completado <span>{completed}</span> tareas de <span>{totalTodos}</span></h1>
   )
 }
 

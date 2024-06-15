@@ -1,0 +1,55 @@
+li {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 450px;
+    height: 30px;
+    box-shadow: 2px 2px 4px #00000050;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 16px;
+    position: relative;
+
+    &.completed {
+        background-color: rgba(0, 128, 0, 0.233);
+
+        p {
+            text-decoration: line-through;
+        }
+
+        .complete {
+            color: green;
+        }
+    }
+
+    span {
+        font-weight: 800;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    p {
+        text-align: start;
+    }
+
+    .complete {
+        transition: 0.2s;
+    }
+
+    .complete:hover {
+        color: green;
+    }
+
+    .delete {
+        position: absolute;
+        top: -10px;
+        right: 0px;
+        transition: 0.2s;
+    }
+
+    .delete:hover {
+        color: red;
+    }
+}

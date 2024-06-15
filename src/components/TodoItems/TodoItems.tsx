@@ -1,3 +1,5 @@
+import './TodoItems.scss'
+
 type TodoItemsTypes = {
     todoId: number;
     completed: boolean;
@@ -9,10 +11,11 @@ function TodoItems({completed, todoId, description}: TodoItemsTypes) {
         <li 
             data-todo-id={todoId}
             data-completed={completed}
+            className={(completed) ? 'completed' : ''}
         >
-            <span>v</span>
+            <span className='complete'>v</span>
             <p>{description}</p>
-            <span>X</span>
+            <span className='delete'>X</span>
         </li>
     )
 }

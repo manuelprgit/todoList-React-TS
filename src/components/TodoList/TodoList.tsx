@@ -1,3 +1,4 @@
+import './TodoList.scss'
 type Todo = {
     children: React.ReactNode; // Add the 'children' property to the type
 }
