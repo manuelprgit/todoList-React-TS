@@ -6,9 +6,9 @@ type TodoItemsTypes = {
     description: string;
 }
 
-function TodoItems({completed, todoId, description}: TodoItemsTypes) {
+function TodoItems({ completed, todoId, description }: TodoItemsTypes) {
     return (
-        <li 
+        <li
             data-todo-id={todoId}
             data-completed={completed}
             className={(completed) ? 'completed' : ''}

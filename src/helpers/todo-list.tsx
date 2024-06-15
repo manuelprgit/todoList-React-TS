@@ -14,7 +14,7 @@ let listOfTodos:Todo[] = [
     {
         id: 2,
         description: 'Llevar el coche al taller para una revisión',
-        completed: true
+        completed: false
     },
     {
         id: 3,
@@ -24,7 +24,7 @@ let listOfTodos:Todo[] = [
     {
         id: 4,
         description: 'Limpiar la cocina',
-        completed: true
+        completed: false
     },
     {
         id: 5,
