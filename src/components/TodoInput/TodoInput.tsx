@@ -1,23 +1,21 @@
+
 import { Dispatch, SetStateAction } from 'react';
 import './TodoInput.scss'
 
-type SearchValues = {
+type SearchTodo = {
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>
 }
 
-function TodoInput({
-  searchValue,
-  setSearchValue
-}: SearchValues) {
+function TodoInput( {searchValue, setSearchValue} : SearchTodo) {
   return (
-    <input
-      type="text"
-      placeholder="Ingresar tarea"
-      onChange={(e) => {
-        setSearchValue(e.target.value);
+    <input 
+      type="text" 
+      placeholder="Ingresar tarea" 
+      value={searchValue}
+      onChange={ e =>{
+        setSearchValue(e.target.value);  
       }}
-      value={searchValue} //!El valor del input ahora esta atado al valor que le envié searchValue del useState
     />
   )
 }

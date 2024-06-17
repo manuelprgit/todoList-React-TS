@@ -11,20 +11,25 @@ import { useState } from "react";
 
 const App = () => {
 
-  const [todos, setTodos] = useState(listOfTodos);
+  const [searchValue, setSearchValue] = useState('');
 
-  const [
-    searchValue, //!Estado
-    setSearchValue //!Función que actualiza el estado.
-  ] = useState(''); //!El estado debe de empezar con un valor inicial
+  const [todos, setTodos] = useState(listOfTodos)
 
-  let completedTodos = todos.filter(todo => todo.completed).length;
-  let totalTodos = todos.length;
-
+  let totalTodos = todos.length; //Como esta variable es el resultado de un useState, se conoce como una variable de estado derivado
+  let completedTodos = todos.filter(todo => 
+    !!todo.completed //Al negarla doblemente lo que se devuelve automaticamente se vuelve verdadero. Si devuelve un string, numero > 0, [], {}... eso se convertira en true
+  ).length;  //Variable derivada
+  
+  const filterTodos = todos.filter(todo => {
+    let searchedValue = searchValue.toLowerCase();
+    let todoDescription = todo.description.toLocaleLowerCase();
+    return todoDescription.includes(searchedValue);
+  });
+   
   return (
     <>
       <TodoTitle
-        completed={completedTodos}
+        completedTodos={completedTodos}
         totalTodos={totalTodos}
       />
       <TodoInput
@@ -32,12 +37,11 @@ const App = () => {
         setSearchValue={setSearchValue}
       />
       <TodoList>
-        {listOfTodos.map(todo => <TodoItems
+        {filterTodos.map(todo => <TodoItems
           key={todo.id}
           todoId={todo.id}
           completed={todo.completed}
           description={todo.description}
-          // setTodos={setTodos}
         />)}
       </TodoList>
       <CreateTodoButton />

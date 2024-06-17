@@ -2,12 +2,12 @@ import './todo-title.scss';
 
 type TodoTitleProps = {
   totalTodos: number,
-  completed: number
+  completedTodos: number
 }
 
-function TodoTitle({ totalTodos, completed }: TodoTitleProps) {
+function TodoTitle({ completedTodos, totalTodos }: TodoTitleProps) {
   return (
-    <h1>Has completado <span>{completed}</span> tareas de <span>{totalTodos}</span></h1>
+    <h1>Has completado <span>{completedTodos}</span> tareas de <span>{totalTodos}</span></h1>
   )
 } 
 
