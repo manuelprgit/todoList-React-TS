@@ -1,28 +1,40 @@
-import { Dispatch, SetStateAction } from 'react';
 import './TodoItems.scss'
+import { FaCheck, FaCircleXmark } from "react-icons/fa6";
+
 
 type TodoItemsTypes = {
     todoId: number;
     completed: boolean;
     description: string;
-    // setTodos: Dispatch<SetStateAction<string>>
+    onComplete: (id: number) => void;
+    onDelete: (id: number) => void;
 }
 
-function TodoItems({ completed, todoId, description, /* setTodos */ }: TodoItemsTypes) {
+function TodoItems({
+    completed,
+    todoId,
+    description,
+    onComplete,
+    onDelete
+}: TodoItemsTypes) {
     return (
         <li
-            data-todo-id={todoId}
             data-completed={completed}
             className={(completed) ? 'completed' : ''}
         >
-            <span 
+            <FaCheck
                 className='complete'
                 onClick={() => {
-                    
+                    onComplete(todoId);
                 }}
-            >v</span>
+            />
             <p>{description}</p>
-            <span className='delete'>X</span>
+            <FaCircleXmark 
+                className='delete'
+                onClick={() => {
+                    onDelete(todoId);
+                }}
+            />
         </li>
     )
 }
