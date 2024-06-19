@@ -8,7 +8,7 @@ li {
     height: 30px;
     box-shadow: 2px 2px 4px #00000050;
     padding: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
     border-radius: 16px;
     position: relative;
     transition: 0.2s;
@@ -37,6 +37,8 @@ li {
 
     .complete {
         transition: 0.2s;
+        cursor: pointer;
+        font-size: 22px;
     }
 
     .complete:hover {
@@ -48,9 +50,12 @@ li {
         top: -10px;
         right: 0px;
         transition: 0.2s;
+        cursor: pointer;
+        font-size: 22px;
+        border-radius: 50px;
     }
 
-    .delete:hover {
+    .delete:hover { 
         color: red;
     }
 }
