@@ -1,5 +1,4 @@
 import './TodoItems.scss'
-import { FaCheck, FaCircleXmark } from "react-icons/fa6";
 import { CheckIcon } from './icons/CheckIcon';
 import { DeleteIcon } from './icons/DeleteIcon';
 
