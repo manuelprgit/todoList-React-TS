@@ -1,5 +1,7 @@
 import './TodoItems.scss'
 import { FaCheck, FaCircleXmark } from "react-icons/fa6";
+import { CheckIcon } from './icons/CheckIcon';
+import { DeleteIcon } from './icons/DeleteIcon';
 
 
 type TodoItemsTypes = {
@@ -22,14 +24,14 @@ function TodoItems({
             data-completed={completed}
             className={(completed) ? 'completed' : ''}
         >
-            <FaCheck
+            <CheckIcon
                 className='complete'
                 onClick={() => {
                     onComplete(todoId);
                 }}
             />
             <p>{description}</p>
-            <FaCircleXmark 
+            <DeleteIcon 
                 className='delete'
                 onClick={() => {
                     onDelete(todoId);
