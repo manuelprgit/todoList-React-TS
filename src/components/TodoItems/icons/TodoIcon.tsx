@@ -1,9 +1,12 @@
 import { FaCheck as Check } from "react-icons/fa6";
-import { TiDeleteOutline as Delete } from "react-icons/ti";
+import { TiDeleteOutline as Delete } from "react-icons/ti"; 
+
 
 type TodoIconType = {
     type: 'complete' | 'delete';
     className: 'complete' | 'delete';
+    onAction: (id:number)=> void; 
+    id: number;
 }
 
 type IconsType = {
@@ -11,11 +14,21 @@ type IconsType = {
     'delete': JSX.Element
 }
 
-const TodoIcon = ({ type }: TodoIconType) => {
+const TodoIcon = ({ type, id, onAction }: TodoIconType) => {
 
     const iconTypes: IconsType = {
-        'complete': <Check className={type}/>,
-        'delete': <Delete className={type}/>
+        'complete': <Check 
+                className={type}
+                onClick={()=>{
+                    onAction(id)
+                }}
+            />,
+        'delete': <Delete 
+                className={type}
+                onClick={()=>{
+                    onAction(id)
+                }}
+            />
     }
 
     return iconTypes[type];

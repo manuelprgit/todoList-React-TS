@@ -10,9 +10,7 @@ function TodoTitle({ completedTodos, totalTodos }: TodoTitleProps) {
     
       (completedTodos === totalTodos)
         ? <h1>FELICIDADES!!! Has completado todos los TODO'S</h1>
-        : <h1>Has completado <span>{completedTodos}</span> tareas de <span>{totalTodos}</span></h1>
-    
-    
+        : <h1>Has completado <span>{completedTodos}</span> tareas de <span>{totalTodos}</span></h1> 
   )
 } 
 

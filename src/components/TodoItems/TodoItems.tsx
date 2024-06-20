@@ -2,7 +2,6 @@ import './TodoItems.scss'
 import { CheckIcon } from './icons/CheckIcon';
 import { DeleteIcon } from './icons/DeleteIcon';
 
-
 type TodoItemsTypes = {
     todoId: number;
     completed: boolean;
@@ -23,22 +22,17 @@ function TodoItems({
             data-completed={completed}
             className={(completed) ? 'completed' : ''}
         >
-            <div
-                onClick={() => {
-                    onComplete(todoId);
-                }}
-            > 
-                <CheckIcon className='complete'/>
-            </div>
+            <CheckIcon
+                className='complete'
+                onClick={onComplete}
+                id={todoId}
+            />
             <p>{description}</p>
-            <div
-                onClick={() => {
-                    onDelete(todoId);
-                }}
-            >
-            <DeleteIcon className='delete'/>
-
-            </div>
+            <DeleteIcon
+                className='delete'
+                onDelete={onDelete}
+                id={todoId}
+            />
         </li>
     )
 }
