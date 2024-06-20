@@ -23,19 +23,22 @@ function TodoItems({
             data-completed={completed}
             className={(completed) ? 'completed' : ''}
         >
-            <CheckIcon
-                className='complete'
+            <div
                 onClick={() => {
                     onComplete(todoId);
                 }}
-            />
+            > 
+                <CheckIcon className='complete'/>
+            </div>
             <p>{description}</p>
-            <DeleteIcon 
-                className='delete'
+            <div
                 onClick={() => {
                     onDelete(todoId);
                 }}
-            />
+            >
+            <DeleteIcon className='delete'/>
+
+            </div>
         </li>
     )
 }

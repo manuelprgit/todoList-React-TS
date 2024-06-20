@@ -1,11 +1,16 @@
 import { TodoIcon } from './TodoIcon';
 
-const DeleteIcon = ()=>{
-    return(
-        <TodoIcon 
-            type='delete'
+type CheckIconType = {
+    className: 'complete' | 'delete', 
+}
+
+const DeleteIcon = ({ className }: CheckIconType) => {
+    return (
+        <TodoIcon
+            type={className} 
+            className={className}
         />
     )
 }
 
-export {DeleteIcon}
+export { DeleteIcon }
