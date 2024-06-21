@@ -16,6 +16,7 @@ export type Todo = {
   completed: boolean;
 }
 
+//TODO: TERMINAR ESTA FUNCION
 const useLocalStorage = (itemName: string, initialValue: string): any => {
 
   let parsedItems: string = JSON.parse(localStorage.getItem(itemName) || initialValue);
@@ -28,6 +29,7 @@ const useLocalStorage = (itemName: string, initialValue: string): any => {
   }
 
 }
+//TODO: TERMINAR ESTA FUNCION
 
 const App = () => {
 
