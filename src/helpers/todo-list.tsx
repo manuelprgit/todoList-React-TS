@@ -1,11 +1,10 @@
-type Todo = {
+export type Todo = {
     id: number;
     description: string;
     completed: boolean;
-
 }
 
-let listOfTodos:Todo[] = [
+let listOfTodos: Todo[] = [
     {
         id: 1,
         description: 'Comprar alimentos para la semana',

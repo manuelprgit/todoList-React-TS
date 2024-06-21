@@ -10,11 +10,20 @@ import { listOfTodos } from "./helpers/todo-list";
 
 import './main.scss';
 
+export type Todo = {
+  id: number;
+  description: string;
+  completed: boolean;
+}
+
+const refreshLocalStorage = (todosForSet: Todo[]) => localStorage.setItem('TODOS_V1', JSON.stringify(todosForSet));
+
+
 const App = () => {
 
   const [searchValue, setSearchValue] = useState('');
 
-  const [todos, setTodos] = useState(listOfTodos)
+  const [todos, setTodos] = useState((): Todo[] => JSON.parse(localStorage.getItem('TODOS_V1') || '[]'));
 
   let totalTodos = todos.length; //Como esta variable es el resultado de un useState, se conoce como una variable de estado derivado
   let completedTodos = todos.filter(todo =>
@@ -31,17 +40,19 @@ const App = () => {
     const index = todos.findIndex(todo => todo.id === id)
     const newTodosArrays = [...todos];
     const todoSelected = newTodosArrays[index];
-    (todoSelected.completed) 
-      ? newTodosArrays[index].completed = false 
+    (todoSelected.completed)
+      ? newTodosArrays[index].completed = false
       : newTodosArrays[index].completed = true
     setTodos(newTodosArrays);
+    refreshLocalStorage(newTodosArrays);
   }
 
   const deleteTodos = (id: number): void => {
     const index = todos.findIndex(todo => todo.id === id);
     const newTodosArrays = [...todos];
-    newTodosArrays.splice(index,1); 
-    setTodos(newTodosArrays); 
+    newTodosArrays.splice(index, 1);
+    setTodos(newTodosArrays);
+    refreshLocalStorage(newTodosArrays);
   }
 
   return (
@@ -64,7 +75,10 @@ const App = () => {
           onDelete={deleteTodos}
         />)}
       </TodoList>
-      <CreateTodoButton />
+      <CreateTodoButton 
+        onRefresh={refreshLocalStorage}
+        todoList={listOfTodos}
+      />
     </>
   )
 }
