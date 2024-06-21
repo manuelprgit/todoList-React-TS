@@ -20,13 +20,14 @@ const TodoIcon = ({ type, id, onAction }: TodoIconType) => {
         'complete': <Check 
                 className={type}
                 onClick={()=>{
-                    onAction(id)
+                    onAction(id);
+                    
                 }}
             />,
         'delete': <Delete 
                 className={type}
                 onClick={()=>{
-                    onAction(id)
+                    onAction(id);
                 }}
             />
     }
