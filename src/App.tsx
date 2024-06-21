@@ -16,8 +16,18 @@ export type Todo = {
   completed: boolean;
 }
 
-const refreshLocalStorage = (todosForSet: Todo[]) => localStorage.setItem('TODOS_V1', JSON.stringify(todosForSet));
+const useLocalStorage = (itemName: string, initialValue: string): any => {
 
+  let parsedItems: string = JSON.parse(localStorage.getItem(itemName) || initialValue);
+
+  const [items, setItems] = useState(parsedItems);
+
+  const saveItems = (newItems: Todo[]) => {
+    localStorage.setItem(itemName, JSON.stringify(newItems));
+    setItems(JSON.stringify(newItems));
+  }
+
+}
 
 const App = () => {
 
@@ -26,6 +36,7 @@ const App = () => {
   const [todos, setTodos] = useState((): Todo[] => JSON.parse(localStorage.getItem('TODOS_V1') || '[]'));
 
   let totalTodos = todos.length; //Como esta variable es el resultado de un useState, se conoce como una variable de estado derivado
+
   let completedTodos = todos.filter(todo =>
     !!todo.completed //Al negarla doblemente lo que se devuelve automáticamente se vuelve verdadero. Si devuelve un string, numero > 0, [], {}... eso se convertira en true
   ).length;  //Variable derivada
@@ -36,6 +47,11 @@ const App = () => {
     return todoDescription.includes(searchedValue);
   })
 
+  const saveTodos = (newTodos: Todo[]) => {
+    localStorage.setItem('TODOS_V1', JSON.stringify(newTodos));
+    setTodos(newTodos);
+  }
+
   const completeTodos = (id: number): void => {
     const index = todos.findIndex(todo => todo.id === id)
     const newTodosArrays = [...todos];
@@ -43,16 +59,14 @@ const App = () => {
     (todoSelected.completed)
       ? newTodosArrays[index].completed = false
       : newTodosArrays[index].completed = true
-    setTodos(newTodosArrays);
-    refreshLocalStorage(newTodosArrays);
+    saveTodos(newTodosArrays);
   }
 
   const deleteTodos = (id: number): void => {
     const index = todos.findIndex(todo => todo.id === id);
     const newTodosArrays = [...todos];
     newTodosArrays.splice(index, 1);
-    setTodos(newTodosArrays);
-    refreshLocalStorage(newTodosArrays);
+    saveTodos(newTodosArrays);
   }
 
   return (
@@ -75,8 +89,8 @@ const App = () => {
           onDelete={deleteTodos}
         />)}
       </TodoList>
-      <CreateTodoButton 
-        onRefresh={refreshLocalStorage}
+      <CreateTodoButton
+        onRefresh={saveTodos}
         todoList={listOfTodos}
       />
     </>
