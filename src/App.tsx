@@ -15,32 +15,33 @@ export type Todo = {
   description: string;
   completed: boolean;
 }
+type LocalStorageType = [items: Todo[], saveItems: (newItems: Todo[]) => void]
 
-//TODO: TERMINAR ESTA FUNCION
-const useLocalStorage = (itemName: string, initialValue: string): any => {
 
-  let parsedItems: string = JSON.parse(localStorage.getItem(itemName) || initialValue);
+const useLocalStorage = (itemName: string, initialValue: string): LocalStorageType => {
 
-  const [items, setItems] = useState(parsedItems);
+  let parsedItems: any = JSON.parse(localStorage.getItem(itemName) || initialValue); //Parceamos la información que vino del localStorage
 
-  const saveItems = (newItems: Todo[]) => {
+  const [items, setItems] = useState(parsedItems); //Creamos un estado para guardar y actualizar la data al momento de asignarle un valor a setItems;
+
+  const saveItems = (newItems: any) => {
     localStorage.setItem(itemName, JSON.stringify(newItems));
-    setItems(JSON.stringify(newItems));
-  }
+    setItems(newItems);
+  } //Esta función se encarga de guardar en el localStorage y actualizar el estado;
 
-}
-//TODO: TERMINAR ESTA FUNCION
+  return [items, saveItems]; //retorna el nuevo estado y la función que se comunica con el actualizador del estado;
+} //custom hook
 
 const App = () => {
 
   const [searchValue, setSearchValue] = useState('');
 
-  const [todos, setTodos] = useState((): Todo[] => JSON.parse(localStorage.getItem('TODOS_V1') || '[]'));
+  const [todos, setTodos] = useLocalStorage('TODOS_V1', JSON.stringify(listOfTodos));
 
   let totalTodos = todos.length; //Como esta variable es el resultado de un useState, se conoce como una variable de estado derivado
 
   let completedTodos = todos.filter(todo =>
-    !!todo.completed //Al negarla doblemente lo que se devuelve automáticamente se vuelve verdadero. Si devuelve un string, numero > 0, [], {}... eso se convertira en true
+    !!todo.completed //Al negar doblemente lo que se devuelve automáticamente se vuelve verdadero. Si devuelve un string, numero > 0, [], {}... eso se convertirá en true
   ).length;  //Variable derivada
 
   const filteredTodos = todos.filter(todo => {
