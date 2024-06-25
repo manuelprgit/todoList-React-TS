@@ -5,7 +5,7 @@ import { TodoInput } from "./components/TodoInput/TodoInput";
 import { TodoList } from "./components/TodoList/TodoList";
 import { TodoItems } from "./components/TodoItems/TodoItems";
 import { CreateTodoButton } from "./components/CreateTodoButton/CreateTodoButton";
-
+ 
 import { listOfTodos } from "./helpers/todo-list";
 
 import './main.scss';
@@ -15,22 +15,23 @@ export type Todo = {
   description: string;
   completed: boolean;
 }
+
+
 type LocalStorageType = [items: Todo[], saveItems: (newItems: Todo[]) => void]
 
+const useLocalStorage = (itemName: string, initialValues: string): LocalStorageType => {
 
-const useLocalStorage = (itemName: string, initialValue: string): LocalStorageType => {
+  let initialValue: any = JSON.parse(localStorage.getItem(itemName) || initialValues);//Parceamos la información que vino del localStorage
 
-  let parsedItems: any = JSON.parse(localStorage.getItem(itemName) || initialValue); //Parceamos la información que vino del localStorage
-
-  const [items, setItems] = useState(parsedItems); //Creamos un estado para guardar y actualizar la data al momento de asignarle un valor a setItems;
+  const [items, setItems] = useState(initialValue);//Creamos un estado para guardar y actualizar la data al momento de asignarle un valor a setItems;
 
   const saveItems = (newItems: any) => {
     localStorage.setItem(itemName, JSON.stringify(newItems));
     setItems(newItems);
-  } //Esta función se encarga de guardar en el localStorage y actualizar el estado;
+  }//Esta función se encarga de guardar en el localStorage y actualizar el estado;
 
-  return [items, saveItems]; //retorna el nuevo estado y la función que se comunica con el actualizador del estado;
-} //custom hook
+  return [items, saveItems];//retorna el nuevo estado y la función que se comunica con el actualizador del estado;
+}//custom hook
 
 const App = () => {
 
