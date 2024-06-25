@@ -19,6 +19,7 @@ export type Todo = {
   completed: boolean;
 }
 
+
 const App = () => {
 
   const [searchValue, setSearchValue] = useState('');
