@@ -1,11 +1,14 @@
 import { useState } from "react";
 
+import { AppUI } from "./components/AppUI/AppUI";
+
 import { TodoTitle } from "./components/TodoTitle/TodoTitle";
 import { TodoInput } from "./components/TodoInput/TodoInput";
 import { TodoList } from "./components/TodoList/TodoList";
 import { TodoItems } from "./components/TodoItems/TodoItems";
 import { CreateTodoButton } from "./components/CreateTodoButton/CreateTodoButton";
- 
+
+import { useLocalStorage } from "./hooks/useLocalStorage";
 import { listOfTodos } from "./helpers/todo-list";
 
 import './main.scss';
@@ -16,22 +19,6 @@ export type Todo = {
   completed: boolean;
 }
 
-
-type LocalStorageType = [items: Todo[], saveItems: (newItems: Todo[]) => void]
-
-const useLocalStorage = (itemName: string, initialValues: string): LocalStorageType => {
-
-  let initialValue: any = JSON.parse(localStorage.getItem(itemName) || initialValues);//Parceamos la información que vino del localStorage
-
-  const [items, setItems] = useState(initialValue);//Creamos un estado para guardar y actualizar la data al momento de asignarle un valor a setItems;
-
-  const saveItems = (newItems: any) => {
-    localStorage.setItem(itemName, JSON.stringify(newItems));
-    setItems(newItems);
-  }//Esta función se encarga de guardar en el localStorage y actualizar el estado;
-
-  return [items, saveItems];//retorna el nuevo estado y la función que se comunica con el actualizador del estado;
-}//custom hook
 
 const App = () => {
 
@@ -74,30 +61,7 @@ const App = () => {
   }
 
   return (
-    <>
-      <TodoTitle
-        completedTodos={completedTodos}
-        totalTodos={totalTodos}
-      />
-      <TodoInput
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
-      <TodoList>
-        {filteredTodos.map(todo => <TodoItems
-          key={todo.id}
-          todoId={todo.id}
-          completed={todo.completed}
-          description={todo.description}
-          onComplete={completeTodos}
-          onDelete={deleteTodos}
-        />)}
-      </TodoList>
-      <CreateTodoButton
-        onRefresh={saveTodos}
-        todoList={listOfTodos}
-      />
-    </>
+    <AppUI />
   )
 }
 
