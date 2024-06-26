@@ -17,7 +17,7 @@ const App = () => {
 
   const [searchValue, setSearchValue] = useState('');
 
-  const [todos, setTodos] = useLocalStorage('TODOS_V1', JSON.stringify(listOfTodos));
+  const {items: todos, saveItems: setTodos} = useLocalStorage('TODOS_V1', JSON.stringify(listOfTodos));
 
   let totalTodos = todos.length; //Como esta variable es el resultado de un useState, se conoce como una variable de estado derivado
 
