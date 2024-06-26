@@ -1,12 +1,6 @@
 import { useState } from "react";
 
-import { AppUI } from "./components/AppUI/AppUI";
-
-import { TodoTitle } from "./components/TodoTitle/TodoTitle";
-import { TodoInput } from "./components/TodoInput/TodoInput";
-import { TodoList } from "./components/TodoList/TodoList";
-import { TodoItems } from "./components/TodoItems/TodoItems";
-import { CreateTodoButton } from "./components/CreateTodoButton/CreateTodoButton";
+import { AppUI } from "./components/AppUI/AppUI"; 
 
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { listOfTodos } from "./helpers/todo-list";
@@ -18,8 +12,7 @@ export type Todo = {
   description: string;
   completed: boolean;
 }
-
-
+ 
 const App = () => {
 
   const [searchValue, setSearchValue] = useState('');
@@ -61,7 +54,17 @@ const App = () => {
   }
 
   return (
-    <AppUI />
+    <AppUI
+      completedTodos={completedTodos}
+      totalTodos={totalTodos}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      filteredTodos={filteredTodos}
+      completeTodos={completeTodos}
+      deleteTodos={deleteTodos}
+      saveTodos={saveTodos}
+      listOfTodos={listOfTodos}
+    />
   )
 }
 

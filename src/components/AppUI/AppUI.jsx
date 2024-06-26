@@ -1,4 +1,20 @@
-const AppUI = () => { 
+import { TodoTitle } from "../TodoTitle/TodoTitle";
+import { TodoInput } from "../TodoInput/TodoInput";
+import { TodoList } from "../TodoList/TodoList";
+import { TodoItems } from "../TodoItems/TodoItems";
+import { CreateTodoButton } from "../CreateTodoButton/CreateTodoButton";
+
+const AppUI = ({
+    completedTodos,
+    totalTodos,
+    searchValue,
+    setSearchValue,
+    filteredTodos,
+    completeTodos,
+    deleteTodos,
+    saveTodos,
+    listOfTodos
+}) => { 
     return (
         <>
             <TodoTitle

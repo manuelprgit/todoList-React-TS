@@ -15,8 +15,8 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    rotate: 180deg;
+button:hover { 
+    transform: rotate(180deg);
 }
 
 button:active {
