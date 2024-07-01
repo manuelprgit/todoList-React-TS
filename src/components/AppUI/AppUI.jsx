@@ -15,7 +15,7 @@ const AppUI = ({
     saveTodos,
     listOfTodos,
     loading,
-    error,
+    error
 }) => { 
     return (
         <>
@@ -28,9 +28,9 @@ const AppUI = ({
                 setSearchValue={setSearchValue}
             />
             <TodoList>
-                {loading && <p>Cargando...</p>}
-                {error && <p>Error al cargar la lista de Todo's</p>}
-                {(!loading && filteredTodos.length === 0) && <p>¡Crea tu primer TODO!</p>}
+                {(loading) && <p>Cargando...</p>}
+                {(error) && <p>Error al cargar</p>}
+                {(!loading && filteredTodos.length === 0) && <p>Crea tu primer TODO</p>}
                 {filteredTodos.map(todo => <TodoItems
                     key={todo.id}
                     todoId={todo.id}
