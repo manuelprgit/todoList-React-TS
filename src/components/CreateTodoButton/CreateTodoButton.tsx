@@ -1,9 +1,5 @@
 import './CreateTodoButton.scss'
-type Todo = {
-    id: number;
-    description: string;
-    completed: boolean;
-}
+import { Todo } from '../../App';
 
 type CreateTodoButtonType = {
     onRefresh: (todos: Todo[]) => void;

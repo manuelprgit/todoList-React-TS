@@ -1,8 +1,8 @@
 import './TodoList.scss'
-type Todo = {
+type TodoListProps = {
     children: React.ReactNode; // Add the 'children' property to the type
 }
-function TodoList(props: Todo) {
+function TodoList(props: TodoListProps) {
     return (
         <ul>
             {props.children}

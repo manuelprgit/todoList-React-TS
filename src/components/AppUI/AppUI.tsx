@@ -1,8 +1,28 @@
+import {
+    Dispatch, SetStateAction,
+
+} from "react";
 import { TodoTitle } from "../TodoTitle/TodoTitle";
 import { TodoInput } from "../TodoInput/TodoInput";
 import { TodoList } from "../TodoList/TodoList";
 import { TodoItems } from "../TodoItems/TodoItems";
 import { CreateTodoButton } from "../CreateTodoButton/CreateTodoButton";
+
+import { Todo } from "../../App";
+
+interface AppUIProps {
+    completedTodos: number;
+    totalTodos: number;
+    searchValue: string;
+    setSearchValue: Dispatch<SetStateAction<string>>;
+    filteredTodos: Todo[];
+    completeTodos: (id: number)=> void;
+    deleteTodos: (id: number)=> void;
+    saveTodos: (newTodos: Todo[])=> void
+    listOfTodos: Todo[];
+    loading: boolean;
+    error: boolean
+}
 
 const AppUI = ({
     completedTodos,
@@ -16,7 +36,7 @@ const AppUI = ({
     listOfTodos,
     loading,
     error
-}) => { 
+}: AppUIProps) => {
     return (
         <>
             <TodoTitle
