@@ -20,7 +20,7 @@ function TodoItems({
     return (
         <li
             data-completed={completed}
-            className={(completed) ? 'completed' : ''}
+            className={`loader-container ${(completed) ? 'completed' : ''}`}
         >
             <CheckIcon
                 className='complete'

@@ -22,7 +22,7 @@ const App = () => {
     saveItems: setTodos,
     loading,
     error
-  } = useLocalStorage('TODOS_V1', listOfTodos);
+  } = useLocalStorage('TODOS_V1', []);
 
   let totalTodos = todos.length; //Como esta variable es el resultado de un useState, se conoce como una variable de estado derivado
 

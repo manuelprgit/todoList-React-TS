@@ -16,18 +16,24 @@ const useLocalStorage = (itemName: string, initialValue: Todo[]): LocalStorageTy
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        try {
-            const localStorageItem = localStorage.getItem(itemName);
-            let parsedItems: any;
-            (!localStorageItem) 
-                ? localStorage.setItem(itemName, JSON.parse(initialValue.toString()))
-                : parsedItems = JSON.parse(localStorageItem); //Parceamos la información que vino del localStorage
-            setLoading(false);
-            
-        } catch (error) {
-            setError(false);
-        }        
-        
+        setTimeout(() => {
+            try {
+                const localStorageItem = localStorage.getItem(itemName);
+                let parsedItems: any;
+                if (!localStorageItem) {
+                    localStorage.setItem(itemName, JSON.parse(initialValue.toString()))
+                    parsedItems = initialValue;
+                } else {
+                    parsedItems = JSON.parse(localStorageItem); //Parceamos la información que vino del localStorage
+                    setItems(parsedItems);
+                }
+                setLoading(false);
+            } catch (error) {
+                setLoading(false);
+                setError(false);
+        }
+        },2000);
+
     }, []);
 
     const saveItems = (newItems: any) => {

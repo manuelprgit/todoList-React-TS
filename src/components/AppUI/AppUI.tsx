@@ -1,12 +1,12 @@
-import {
-    Dispatch, SetStateAction,
-
-} from "react";
+import { Dispatch, SetStateAction } from "react";
 import { TodoTitle } from "../TodoTitle/TodoTitle";
 import { TodoInput } from "../TodoInput/TodoInput";
 import { TodoList } from "../TodoList/TodoList";
 import { TodoItems } from "../TodoItems/TodoItems";
 import { CreateTodoButton } from "../CreateTodoButton/CreateTodoButton";
+import { TodosLoading } from '../TodosLoading/TodosLoading';
+import { TodosError } from '../TodosError/TodosError';
+import { TodosEmpty } from '../TodosEmpty/TodosEmpty';
 
 import { Todo } from "../../App";
 
@@ -14,28 +14,28 @@ interface AppUIProps {
     completedTodos: number;
     totalTodos: number;
     searchValue: string;
-    setSearchValue: Dispatch<SetStateAction<string>>;
     filteredTodos: Todo[];
-    completeTodos: (id: number)=> void;
-    deleteTodos: (id: number)=> void;
-    saveTodos: (newTodos: Todo[])=> void
     listOfTodos: Todo[];
     loading: boolean;
     error: boolean
+    setSearchValue: Dispatch<SetStateAction<string>>;
+    completeTodos: (id: number) => void;
+    deleteTodos: (id: number) => void;
+    saveTodos: (newTodos: Todo[]) => void
 }
 
 const AppUI = ({
     completedTodos,
     totalTodos,
     searchValue,
-    setSearchValue,
     filteredTodos,
+    listOfTodos,
+    loading,
+    error,
+    setSearchValue,
     completeTodos,
     deleteTodos,
     saveTodos,
-    listOfTodos,
-    loading,
-    error
 }: AppUIProps) => {
     return (
         <>
@@ -48,9 +48,9 @@ const AppUI = ({
                 setSearchValue={setSearchValue}
             />
             <TodoList>
-                {(loading) && <p>Cargando...</p>}
-                {(error) && <p>Error al cargar</p>}
-                {(!loading && filteredTodos.length === 0) && <p>Crea tu primer TODO</p>}
+                {(loading) && <TodosLoading />}
+                {(error) && <TodosError />}
+                {(!loading && filteredTodos.length === 0) && <TodosEmpty />}
                 {filteredTodos.map(todo => <TodoItems
                     key={todo.id}
                     todoId={todo.id}
