@@ -1,3 +1,17 @@
 .loading-active{
-    background-color: yellow;
+    background: linear-gradient(90deg, #eaeaea, #c1c1c1);
+    background-size: 400% 400%;
+    animation: loading 2s infinite ease-in-out;
+}
+
+@keyframes loading {
+    0%{
+        background-position: 0% 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
 }

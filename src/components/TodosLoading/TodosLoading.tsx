@@ -5,10 +5,7 @@ const TodosLoading = () => {
         <>
             <li className="loader-container loading-active"></li>
             <li className="loader-container loading-active"></li>
-            <li className="loader-container loading-active"></li>
-            <li className="loader-container loading-active"></li>
-            <li className="loader-container loading-active"></li>
-            <li className="loader-container loading-active"></li>
+            <li className="loader-container loading-active"></li> 
             <li className="loader-container loading-active"></li>
         </>
     )
