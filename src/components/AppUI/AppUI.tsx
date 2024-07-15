@@ -7,12 +7,13 @@ import { CreateTodoButton } from "../CreateTodoButton/CreateTodoButton";
 import { TodosLoading } from '../TodosLoading/TodosLoading';
 import { TodosError } from '../TodosError/TodosError';
 import { TodosEmpty } from '../TodosEmpty/TodosEmpty';
+import { TodoContext } from "../TodoContext/TodoContext";
 
-import { Todo } from "../../App";
+import { Todo } from '../../App';
 
 interface AppUIProps {
-    completedTodos: number;
     totalTodos: number;
+    completedTodos: number;
     searchValue: string;
     filteredTodos: Todo[];
     listOfTodos: Todo[];
@@ -24,46 +25,58 @@ interface AppUIProps {
     saveTodos: (newTodos: Todo[]) => void
 }
 
-const AppUI = ({
+const AppUI = (
+    // loading,
+    // error,
+    // searchValue,
+    /* { 
+
     completedTodos,
     totalTodos,
-    searchValue,
     filteredTodos,
     listOfTodos,
-    loading,
-    error,
     setSearchValue,
     completeTodos,
     deleteTodos,
     saveTodos,
-}: AppUIProps) => {
+}: AppUIProps */) => {
     return (
         <>
-            <TodoTitle
-                completedTodos={completedTodos}
-                totalTodos={totalTodos}
-            />
-            <TodoInput
-                searchValue={searchValue}
-                setSearchValue={setSearchValue}
-            />
-            <TodoList>
-                {(loading) && <TodosLoading />}
-                {(error) && <TodosError />}
-                {(!loading && filteredTodos.length === 0) && <TodosEmpty />}
-                {filteredTodos.map(todo => <TodoItems
-                    key={todo.id}
-                    todoId={todo.id}
-                    completed={todo.completed}
-                    description={todo.description}
-                    onComplete={completeTodos}
-                    onDelete={deleteTodos}
-                />)}
-            </TodoList>
-            <CreateTodoButton
+            {/* <TodoTitle />
+            <TodoInput /> */}
+            <TodoContext.Consumer>
+                {({
+                    totalTodos,
+                    completedTodos,
+                    searchValue,
+                    filteredTodos,
+                    loading,
+                    error,
+                    setSearchValue,
+                    completeTodos,
+                    deleteTodos,
+                    saveTodos,
+                    listOfTodos
+                }: any /* TODO: QUITAR ESTO */ ) => (
+                    <TodoList>
+                        {(loading) && <TodosLoading />}
+                        {(error) && <TodosError />}
+                        {(!loading && filteredTodos.length === 0) && <TodosEmpty />}
+                        {filteredTodos.map((todo: Todo) => <TodoItems
+                            key={todo.id}
+                            todoId={todo.id}
+                            completed={todo.completed}
+                            description={todo.description}
+                            onComplete={completeTodos}
+                            onDelete={deleteTodos}
+                        />)}
+                    </TodoList>
+                )}
+            </TodoContext.Consumer>
+            {/* <CreateTodoButton
                 onRefresh={saveTodos}
                 todoList={listOfTodos}
-            />
+            /> */}
         </>
     )
 }
