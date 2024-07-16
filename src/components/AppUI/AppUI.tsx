@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useContext } from "react";
 import { TodoTitle } from "../TodoTitle/TodoTitle";
 import { TodoInput } from "../TodoInput/TodoInput";
 import { TodoList } from "../TodoList/TodoList";
@@ -8,6 +8,7 @@ import { TodosLoading } from '../TodosLoading/TodosLoading';
 import { TodosError } from '../TodosError/TodosError';
 import { TodosEmpty } from '../TodosEmpty/TodosEmpty';
 import { TodoContext } from "../TodoContext/TodoContext";
+import { Modal } from "../../helpers/components/Modal";
 
 import { Todo } from '../../App';
 
@@ -25,39 +26,23 @@ interface AppUIProps {
     saveTodos: (newTodos: Todo[]) => void
 }
 
-const AppUI = (
-    // loading,
-    // error,
-    // searchValue,
-    /* { 
+const AppUI = () => {
 
-    completedTodos,
-    totalTodos,
-    filteredTodos,
-    listOfTodos,
-    setSearchValue,
-    completeTodos,
-    deleteTodos,
-    saveTodos,
-}: AppUIProps */) => {
+    const { 
+        filteredTodos,
+        loading,
+        error, 
+        completeTodos,
+        deleteTodos,
+        openModal,
+        setOpenModal
+    } = useContext(TodoContext);
     return (
         <>
-            {/* <TodoTitle />
-            <TodoInput /> */}
+            <TodoTitle />
+            <TodoInput /> 
             <TodoContext.Consumer>
-                {({
-                    totalTodos,
-                    completedTodos,
-                    searchValue,
-                    filteredTodos,
-                    loading,
-                    error,
-                    setSearchValue,
-                    completeTodos,
-                    deleteTodos,
-                    saveTodos,
-                    listOfTodos
-                }: any /* TODO: QUITAR ESTO */ ) => (
+                {() => (
                     <TodoList>
                         {(loading) && <TodosLoading />}
                         {(error) && <TodosError />}
@@ -73,10 +58,12 @@ const AppUI = (
                     </TodoList>
                 )}
             </TodoContext.Consumer>
-            {/* <CreateTodoButton
-                onRefresh={saveTodos}
-                todoList={listOfTodos}
-            /> */}
+            <CreateTodoButton />
+            {openModal && 
+                <Modal>
+                    <h2>klk</h2>
+                </Modal>
+            }
         </>
     )
 }

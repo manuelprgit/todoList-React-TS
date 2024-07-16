@@ -1,8 +1,9 @@
 import { createContext, useState } from "react";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Todo } from "../../App";
+import { listOfTodos } from "../../helpers/todo-list";
 
-const TodoContext = createContext({});
+const TodoContext = createContext('');
 
 const TodoProvider = ({children}: any) => {
 
@@ -49,6 +50,8 @@ const TodoProvider = ({children}: any) => {
       saveTodos(newTodosArrays);
     }
 
+    const [openModal, setOpenModal] = useState(true);
+
     return(
         <TodoContext.Provider
             value={{
@@ -62,7 +65,9 @@ const TodoProvider = ({children}: any) => {
                 completeTodos,
                 deleteTodos,
                 saveTodos,
-                // listOfTodos
+                listOfTodos,
+                openModal,
+                setOpenModal
             }}
         >
             {children}

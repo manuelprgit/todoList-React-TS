@@ -1,17 +1,24 @@
 import './CreateTodoButton.scss'
 import { Todo } from '../../App';
+import { useContext } from 'react';
+import { TodoContext } from '../TodoContext/TodoContext';
 
 type CreateTodoButtonType = {
-    onRefresh: (todos: Todo[]) => void;
-    todoList: Todo[]
+    saveTodos: (todos: Todo[]) => void;
+    listOfTodos: Todo[]
 }
 
-function CreateTodoButton({ onRefresh, todoList }: CreateTodoButtonType) {
+function CreateTodoButton(/* { onRefresh, todoList }: CreateTodoButtonType */) { 
+    const {
+        saveTodos,
+        listOfTodos
+    } = useContext(TodoContext)
+
     return (
         <button 
             type="button"
             onClick={()=>{
-                onRefresh(todoList)
+                saveTodos(listOfTodos)
             }}
         >+</button>
     )

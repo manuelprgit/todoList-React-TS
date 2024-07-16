@@ -1,13 +1,19 @@
 
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useContext } from 'react';
 import './TodoInput.scss'
+import { TodoContext } from '../TodoContext/TodoContext';
 
 type SearchTodo = {
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>
 }
 
-function TodoInput( {searchValue, setSearchValue} : SearchTodo) {
+function TodoInput( /* {searchValue, setSearchValue} : SearchTodo */) {
+
+  const {
+    searchValue,
+    setSearchValue
+  } = useContext(TodoContext);
   return (
     <input 
       type="text" 
