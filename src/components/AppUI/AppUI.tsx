@@ -9,7 +9,7 @@ import { TodosError } from '../TodosError/TodosError';
 import { TodosEmpty } from '../TodosEmpty/TodosEmpty';
 import { TodoContext } from "../TodoContext/TodoContext";
 import { Modal } from "../../helpers/components/Modal";
-
+import { TodoForm } from "../TodoForm/TodoForm";
 import { Todo } from '../../App';
 
 interface AppUIProps {
@@ -58,10 +58,10 @@ const AppUI = () => {
                     </TodoList>
                 )}
             </TodoContext.Consumer>
-            <CreateTodoButton />
+            <CreateTodoButton setOpenModal={setOpenModal} />
             {openModal && 
                 <Modal>
-                    <h2>klk</h2>
+                    <TodoForm/>
                 </Modal>
             }
         </>

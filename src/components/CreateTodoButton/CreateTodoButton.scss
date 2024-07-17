@@ -1,4 +1,4 @@
-button {
+.btn-todo-form {
     height: 60px;
     width: 60px;
     border-radius: 50%;
@@ -13,13 +13,14 @@ button {
     right: 40px;
     transition: 0.2s;
     cursor: pointer;
+    z-index: 10;
 }
 
-button:hover { 
+.btn-todo-form:hover { 
     transform: rotate(180deg);
 }
 
-button:active {
+.btn-todo-form:active {
     background-color: rgb(0, 231, 231);
     transform: translate( 0px, -1px);
 }

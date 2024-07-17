@@ -1,12 +1,12 @@
 import ReactDOM from "react-dom"
 
-const Modal = ({children}) => {
+const Modal = ({ children }) => {
     return ReactDOM.createPortal(
-        <div>
+        <div className="modal-blocker">
             {children}
         </div>,
         document.getElementById('modal')
     )
 }
 
-export {Modal}
+export { Modal }

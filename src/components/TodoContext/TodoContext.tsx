@@ -50,7 +50,7 @@ const TodoProvider = ({children}: any) => {
       saveTodos(newTodosArrays);
     }
 
-    const [openModal, setOpenModal] = useState(true);
+    const [openModal, setOpenModal] = useState(false);
 
     return(
         <TodoContext.Provider

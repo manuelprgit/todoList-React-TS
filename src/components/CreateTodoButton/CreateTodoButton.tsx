@@ -8,17 +8,19 @@ type CreateTodoButtonType = {
     listOfTodos: Todo[]
 }
 
-function CreateTodoButton(/* { onRefresh, todoList }: CreateTodoButtonType */) { 
-    const {
-        saveTodos,
-        listOfTodos
-    } = useContext(TodoContext)
+function CreateTodoButton({setOpenModal}/* { onRefresh, todoList }: CreateTodoButtonType */) { 
+
+    // const {
+    //     saveTodos,
+    //     listOfTodos
+    // } = useContext(TodoContext)
 
     return (
         <button 
             type="button"
-            onClick={()=>{
-                saveTodos(listOfTodos)
+            className='btn-todo-form'
+            onClick={()=>{ 
+                setOpenModal(state => !state);
             }}
         >+</button>
     )
