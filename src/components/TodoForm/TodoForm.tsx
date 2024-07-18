@@ -3,7 +3,10 @@ import { TodoContext } from '../TodoContext/TodoContext'
 import './TodoForm.scss'
 
 const TodoForm = () => {
-    const { setOpenModal } = useContext(TodoContext)
+    const { 
+        setOpenModal, 
+        addTodo 
+    } = useContext(TodoContext)
     return (
         <form onSubmit={(e) => {
             console.log(e);
@@ -28,7 +31,7 @@ const TodoForm = () => {
                     className='btn btn-success'
                     onClick={(e) => {
                         e.preventDefault();
-
+                        addTodo(document.querySelector('textarea')?.value);
                     }}
                 >
                     Añadir
