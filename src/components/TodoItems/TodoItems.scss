@@ -1,10 +1,6 @@
 li {
     &.completed {
-        background-color: rgba(0, 128, 0, 0.233);
-
-        p {
-            text-decoration: line-through;
-        }
+        background-color: rgba(0, 128, 0, 0.233); 
 
         .complete {
             color: green;
