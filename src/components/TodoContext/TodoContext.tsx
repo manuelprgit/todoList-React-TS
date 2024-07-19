@@ -52,9 +52,7 @@ const TodoProvider = ({ children }: any) => {
 
   const addTodo = (todoText: string) => {
 
-    let lastTodo = todos[todos.length - 1]; 
-    
-
+    let lastTodo = todos[todos.length - 1];  
     const newTodo: Todo = {
       id: (lastTodo) ? lastTodo.id + 1 : 1,
       description: todoText,
