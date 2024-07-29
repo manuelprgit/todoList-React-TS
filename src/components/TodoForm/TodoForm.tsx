@@ -6,7 +6,7 @@ const TodoForm = () => {
     const { 
         setOpenModal, 
         addTodo 
-    } = useContext(TodoContext)
+    }: any = useContext(TodoContext)
     return (
         <form onSubmit={(e) => {
             console.log(e);
@@ -19,8 +19,8 @@ const TodoForm = () => {
             ></textarea>
             <div className="button-content">
                 <button
-                    onClick={(e) => {
-                        setOpenModal(state => !state)
+                    onClick={() => {
+                        setOpenModal((state:any) => !state)
                     }}
                     className='btn btn-danger'
                 >

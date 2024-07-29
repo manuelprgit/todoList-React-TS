@@ -1,26 +1,17 @@
 import './CreateTodoButton.scss'
-import { Todo } from '../../App';
-import { useContext } from 'react';
-import { TodoContext } from '../TodoContext/TodoContext';
 
 type CreateTodoButtonType = {
-    saveTodos: (todos: Todo[]) => void;
-    listOfTodos: Todo[]
+    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function CreateTodoButton({setOpenModal}/* { onRefresh, todoList }: CreateTodoButtonType */) { 
-
-    // const {
-    //     saveTodos,
-    //     listOfTodos
-    // } = useContext(TodoContext)
+function CreateTodoButton({ setOpenModal }: CreateTodoButtonType) {
 
     return (
-        <button 
+        <button
             type="button"
             className='btn-todo-form'
-            onClick={()=>{ 
-                setOpenModal(state => !state);
+            onClick={() => {
+                setOpenModal((state: boolean) => !state);
             }}
         >+</button>
     )

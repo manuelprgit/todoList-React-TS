@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction, useContext } from "react";
+import { useContext } from "react";
+
 import { TodoTitle } from "../TodoTitle/TodoTitle";
 import { TodoInput } from "../TodoInput/TodoInput";
 import { TodoList } from "../TodoList/TodoList";
@@ -11,36 +12,23 @@ import { TodoContext } from "../TodoContext/TodoContext";
 import { Modal } from "../../helpers/components/Modal";
 import { TodoForm } from "../TodoForm/TodoForm";
 import { Todo } from '../../App';
-
-interface AppUIProps {
-    totalTodos: number;
-    completedTodos: number;
-    searchValue: string;
-    filteredTodos: Todo[];
-    listOfTodos: Todo[];
-    loading: boolean;
-    error: boolean
-    setSearchValue: Dispatch<SetStateAction<string>>;
-    completeTodos: (id: number) => void;
-    deleteTodos: (id: number) => void;
-    saveTodos: (newTodos: Todo[]) => void
-}
+ 
 
 const AppUI = () => {
 
-    const { 
+    const {
         filteredTodos,
         loading,
-        error, 
+        error,
+        openModal,
+        setOpenModal,
         completeTodos,
         deleteTodos,
-        openModal,
-        setOpenModal
-    } = useContext(TodoContext);
+    }: any = useContext(TodoContext);
     return (
         <>
             <TodoTitle />
-            <TodoInput /> 
+            <TodoInput />
             <TodoContext.Consumer>
                 {() => (
                     <TodoList>
@@ -59,9 +47,9 @@ const AppUI = () => {
                 )}
             </TodoContext.Consumer>
             <CreateTodoButton setOpenModal={setOpenModal} />
-            {openModal && 
+            {openModal &&
                 <Modal>
-                    <TodoForm/>
+                    <TodoForm />
                 </Modal>
             }
         </>

@@ -2,10 +2,14 @@ import { createContext, useState } from "react";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Todo } from "../../App";
 import { listOfTodos } from "../../helpers/todo-list";
+ 
+interface TodoProviderProps {
+  children: JSX.Element | JSX.Element[];
+}
 
-const TodoContext = createContext('');
+const TodoContext = createContext({});
 
-const TodoProvider = ({ children }: any) => {
+const TodoProvider = ({ children }: TodoProviderProps) => {
 
   const [searchValue, setSearchValue] = useState('');
 
@@ -16,7 +20,7 @@ const TodoProvider = ({ children }: any) => {
     error
   } = useLocalStorage('TODOS_V1', []);
 
-  let totalTodos = todos.length; //Como esta variable es el resultado de un useState, se conoce como una variable de estado derivado
+  let totalTodos = todos.length; // Como esta variable es el resultado de un useState, se conoce como una variable de estado derivado
 
   let completedTodos = todos.filter(todo =>
     !!todo.completed //Al negar doblemente lo que se devuelve automáticamente se vuelve verdadero. Si devuelve un string, numero > 0, [], {}... eso se convertirá en true
@@ -52,8 +56,8 @@ const TodoProvider = ({ children }: any) => {
 
   const addTodo = (todoText: string) => {
 
-    let lastTodo = todos[todos.length - 1]; 
-    
+    let lastTodo = todos[todos.length - 1];
+
 
     const newTodo: Todo = {
       id: (lastTodo) ? lastTodo.id + 1 : 1,

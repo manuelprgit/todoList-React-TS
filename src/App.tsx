@@ -1,9 +1,5 @@
-import { useState } from "react";
-
-import { AppUI } from "./components/AppUI/AppUI"; 
-
-import { useLocalStorage } from "./hooks/useLocalStorage";
-import { listOfTodos } from "./helpers/todo-list";
+ 
+import { AppUI } from "./components/AppUI/AppUI";  
 
 import './main.scss';
 import { TodoProvider } from "./components/TodoContext/TodoContext";
@@ -18,18 +14,7 @@ const App = () => {
 
   return (
     <TodoProvider>
-      <AppUI
-        // loading={loading}
-        // error={error}
-        // completedTodos={completedTodos}
-        // totalTodos={totalTodos}
-        // searchValue={searchValue}
-        // setSearchValue={setSearchValue}
-        // filteredTodos={filteredTodos}
-        // completeTodos={completeTodos}
-        // deleteTodos={deleteTodos}
-        // saveTodos={saveTodos}
-        // listOfTodos={listOfTodos}
+      <AppUI 
       />
     </TodoProvider>
   )
