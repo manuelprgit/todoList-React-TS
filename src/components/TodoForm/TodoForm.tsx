@@ -1,11 +1,7 @@
 import { useContext } from 'react'
 import { TodoContext } from '../TodoContext/TodoContext'
 import './TodoForm.scss'
-
-type TodoFormContext = {
-    setOpenModal: () => void,
-    addTodo: string
-}
+ 
 
 const TodoForm = () => {
     const { 
